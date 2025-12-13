@@ -1,0 +1,69 @@
+
+# Ejercicio 1: O(1) - Constante
+def constante():
+    a = 1 + 2  # Operación 1
+    b = a * 3  # Operación 2
+    return b
+
+# Ejercicio 2: O(n) - Lineal
+def lineal(n):
+    total = 0
+    print(f"\nConteo de operaciones para n = {n}:")
+    for i in range(n):
+        total += 1
+        print(f"Iteración {i+1}: total = {total}")
+    print(f"Total de operaciones: {n}")
+    return total
+
+# Menú interactivo
+def menu():
+    while True:
+        print("\n--- Taller Big-O ---")
+        print("1. Ejecutar ejemplo constante O(1)")
+        print("2. Ejecutar ejemplo lineal O(n)")
+        print("3. Ejecutar ejemplos automáticos con varios n")
+        print("4. Salir")
+        opcion = input("Elige una opción: ")
+        if opcion == "1":
+            print("Resultado constante:", constante())
+        elif opcion == "2":
+            n = int(input("Ingresa el valor de n: "))
+            print("Resultado lineal:", lineal(n))
+        elif opcion == "3":
+            entrada = input("Ingresa los valores de n separados por coma (ejemplo: 2,5,8): ")
+            try:
+                valores = [int(x.strip()) for x in entrada.split(",") if x.strip().isdigit()]
+                for n in valores:
+                    print(f"\nEjemplo automático para n = {n}")
+                    print("Resultado lineal:", lineal(n))
+            except Exception as e:
+                print("Entrada inválida. Por favor ingresa números separados por coma.")
+        elif opcion == "4":
+            break
+        else:
+            print("Opción no válida.")
+
+if __name__ == "__main__":
+    menu()
+
+"""
+# Análisis y entregables
+
+1. Código funcional: Ver arriba.
+
+2. Conteo de operaciones fundamentales:
+   - constante(): 2 operaciones (suma y multiplicación).
+   - lineal(n): n operaciones (una por cada iteración).
+
+3. Función de tiempo T(n):
+   - constante(): T(n) = 2
+   - lineal(n): T(n) = n
+
+4. Prueba matemática de la notación Big-O:
+   - constante(): T(n) = 2 <= C para C=2 y n0=1, entonces es O(1).
+   - lineal(n): T(n) = n <= C*n para C=1 y n0=1, entonces es O(n).
+
+5. Conclusión breve:
+   - O(1) significa que el tiempo de ejecución no depende del tamaño de la entrada.
+   - O(n) significa que el tiempo de ejecución crece proporcionalmente al tamaño de la entrada.
+"""
